@@ -1,0 +1,52 @@
+<h2>Contact Us</h2>
+
+<div id="" *ngIf="contactForm.invalid && contactForm.touched">
+  <p *ngIf="name.invalid"><strong>Error: </strong>Name is required</p>
+  <p *ngIf="email.invalid"><strong>Error: </strong>Email is required</p>
+  <p *ngIf="message.invalid"><strong>Error: </strong>Message is required</p>
+</div>
+
+<div *ngIf="blankError">
+  {{ blankError }}
+</div>
+
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+  <div class="mb-3">
+    <label class="form-label" for="name-input">Name:</label>
+    <input
+      type="name"
+      class="form-control"
+      id="name-input"
+      name="name"
+      [(ngModel)]="contactData.name"
+      #name="ngModel"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="email-input" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email-input"
+      name="email"
+      [(ngModel)]="contactData.email"
+      #email="ngModel"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="control-label" for="message">Message:</label>
+    <textarea
+      class="form-control"
+      id="message"
+      name="message"
+      rows="6"
+      [(ngModel)]="contactData.message"
+      #message="ngModel"
+      required
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

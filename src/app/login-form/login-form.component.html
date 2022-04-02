@@ -1,0 +1,55 @@
+<h1>Login</h1>
+
+<div *ngIf="!name.valid">
+  <strong>Warning: </strong>Username must "only" contain numbers and letters
+  <div *ngIf="name.errors?.['required']">
+    <strong>Error: </strong>Username is required!
+  </div>
+</div>
+
+<div *ngIf="!password.valid">
+  <strong>Warning: </strong>Password must "only" contain numbers and letters
+  <div *ngIf="password.errors?.['required']">
+    <strong>Error: </strong>Password is required!
+  </div>
+</div>
+<br />
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <div class="mb-3">
+    <label
+      class="form-label"
+      for="username-input"
+      [class.text-danger]="!name.valid"
+      >Username:</label
+    >
+    <input
+      type="username"
+      class="form-control"
+      id="username-input"
+      name="userName"
+      [(ngModel)]="userData.userName"
+      required
+      pattern="[a-zA-Z0-9]*"
+      #name="ngModel"
+    />
+  </div>
+  <div class="mb-3">
+    <label
+      for="passw-input"
+      class="form-label"
+      [class.text-danger]="!password.valid"
+      >Password</label
+    >
+    <input
+      type="password"
+      class="form-control"
+      id="passw-input"
+      name="password"
+      [(ngModel)]="userData.password"
+      required
+      pattern="[a-zA-Z0-9]*"
+      #password="ngModel"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
